@@ -1,0 +1,43 @@
+.container-dataDisplay {
+    overflow-y: scroll;
+}
+
+.first-row {
+    display: flex;
+    border: 1px solid black;
+}
+
+.box {
+    font-weight: bold;
+    display: flex;
+    width: 25%;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px black solid;
+    border-bottom: 1px black solid;
+}
+
+.btn-fetch{
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    height: 3rem;
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: rgba(95, 187, 237, 0.5);
+}
+
+.btn-edit {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    height: 3rem;
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: rgba(95, 187, 237, 0.5);
+}
+
+.button {
+    width: 50%;
+}

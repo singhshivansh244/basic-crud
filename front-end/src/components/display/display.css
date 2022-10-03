@@ -1,0 +1,13 @@
+.container-display {
+    display: flex;
+}
+
+.same-style {
+    display: flex;
+    border-left: 1px black solid;
+    border-bottom: 1px black solid;
+    width: 25%;
+    height: 3rem;
+    padding-left: 0.5rem;
+    overflow-x: scroll;
+}
