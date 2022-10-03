@@ -1,6 +1,6 @@
 # Install all dependency
 
-npm install
+### `npm install`
 
 ## start server
 
