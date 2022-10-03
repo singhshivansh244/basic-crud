@@ -6,3 +6,6 @@ npm install
 
 ### `npm start`
 
+## server hosted
+
+### http://localhost:8800
