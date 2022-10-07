@@ -27,8 +27,6 @@ app.use(cors());
 
 app.use('/api/records', userRoute);
 
-
 app.listen(8800, () => {
     console.log('Server is connected to http://localhost:8800')
 })
-

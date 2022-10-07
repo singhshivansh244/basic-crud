@@ -15,13 +15,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 This is a simple CRUD operation website.\
 In this add remove update and delete options are availble.\
-Image upload support not available yet.
+Multi Image upload support available.
 
 ## To add Record
 
 1. Unique Username(required)
 2. Unique Email(required)
 3. Phone No
+4. Upload single/multiple images
 4. Press submit button
 
 ## To Edit Record
@@ -46,4 +47,5 @@ Image upload support not available yet.
 * Node js
 * Express js
 * mongoDB
+* multer
 

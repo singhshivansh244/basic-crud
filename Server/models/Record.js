@@ -19,7 +19,7 @@ const RecordSchema = new mongoose.Schema({
         min: 10
     },
     imageData:{
-        type: String,
+        type: Array,
         default: "",
     }
 });
