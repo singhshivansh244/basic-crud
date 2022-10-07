@@ -5,7 +5,7 @@ import {useState} from 'react'
 
 export default function DataEntry() {
 
-  const [fileData, setFileData] = useState();
+  const [fileData, setFileData] = useState([]);
 
   const handleDataSubmit = async (e) => {
     e.preventDefault();
@@ -19,12 +19,12 @@ export default function DataEntry() {
     }
     const data = new FormData();
 
-    // for(let i = 0; i < fileData.length; i++){
-    //   data.append('images', fileData[i]);
-    // }
+    for(let i = 0; i < fileData.length; i++){
+      data.append('images', fileData[i]);
+    }
     data.append('image', fileData);
     setFileData('');
-    // console.log(fileData);
+    console.log(fileData);
 
     await fetch('http://localhost:8800/api/records/uploadImage', {
       method: "POST",
@@ -68,10 +68,9 @@ export default function DataEntry() {
   }
 
   const handleChange = (e) => {
-    // for(let i = 0; i < e.target.files.length; i++){
-    //   setFileData(prev => [...prev, e.target.files[i]]);
-    // }
-    setFileData(e.target.files[0]);
+    for(let i = 0; i < e.target.files.length; i++){
+      setFileData(prev => [...prev, e.target.files[i]]);
+    }
   }
 
   const handleDataDelete = async (e) => {
@@ -100,7 +99,7 @@ export default function DataEntry() {
       <div className="Multi-image same-in-all">
         <form onSubmit={handleSubmit}>
           <label for="imageData" style={{fontWeight: 'bold', fontSize: '1.2rem'}}>Multi Image upload</label>
-          <input type="file" name="image" multiple id='upload' className='input-image' onChange={handleChange} />
+          <input type="file" name="images" multiple id='upload' className='input-image' onChange={handleChange} />
         </form>
       </div>
       <div className='btn-container'>
