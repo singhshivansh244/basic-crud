@@ -1,25 +1,77 @@
 import './dataEntry.css'
+import {useState} from 'react'
 
 //leftView
 
 export default function DataEntry() {
 
+  const [fileData, setFileData] = useState();
+
   const handleDataSubmit = async (e) => {
     e.preventDefault();
-    let data = {
+    if(!document.getElementById('username').value.trim()){
+      alert('Please enter username');
+      return;
+    }
+    if(!document.getElementById('email').value){
+      alert('Please enter email');
+      return;
+    }
+    const data = new FormData();
+
+    // for(let i = 0; i < fileData.length; i++){
+    //   data.append('images', fileData[i]);
+    // }
+    data.append('image', fileData);
+    setFileData('');
+    // console.log(fileData);
+
+    await fetch('http://localhost:8800/api/records/uploadImage', {
+      method: "POST",
+      body: data
+    }).then(res => console.log('File uploaded successfully'))
+      .catch(err => console.log(err.message))
+
+    let info = {
       "username": document.getElementById('username').value,
       "email": document.getElementById('email').value,
       "phone": document.getElementById('phone').value,
-      "ImageData": document.getElementById('upload').value,
+      "imageData": fileData.name,
     }
-    const myData = await fetch('http://localhost:8800/api/records/add', {
+    await fetch('http://localhost:8800/api/records/add', {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(info)
     }).then(res => res.json());
-    console.log(myData);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // const data = new FormData();
+
+    // // for(let i = 0; i < fileData.length; i++){
+    // //   data.append('images', fileData[i]);
+    // // }
+    //   data.append('image', fileData);
+    // setFileData([]);
+    // // console.log(fileData);
+
+    // await fetch('http://localhost:8800/api/records/add', {
+    //   method: "POST",
+    //   body: data
+    // }).then(res => console.log('File uploaded successfully'))
+    // .catch(err => console.log(err.message))
+
+  }
+
+  const handleChange = (e) => {
+    // for(let i = 0; i < e.target.files.length; i++){
+    //   setFileData(prev => [...prev, e.target.files[i]]);
+    // }
+    setFileData(e.target.files[0]);
   }
 
   const handleDataDelete = async (e) => {
@@ -35,20 +87,20 @@ export default function DataEntry() {
     <div className='container-dataEntry'>
       <div className="Username same-in-all">
         <h2>Username<sup>*</sup></h2>
-        <input type="text" id='username' placeholder='Enter Unique username' className='input-text' />
+        <input type="text" id='username' required placeholder='Enter Unique username' className='input-text' />
       </div>
       <div className="Email same-in-all">
         <h2>Email<sup>*</sup></h2>
-        <input type="email" id='email' placeholder='Enter Unique email' className='input-text' />
+        <input type="email" id='email' required placeholder='Enter Unique email' className='input-text' />
       </div>
       <div className="Phone same-in-all">
         <h2>Phone</h2>
         <input type="number" id='phone' placeholder='Enter min 10 digit' className='input-text' />
       </div>
       <div className="Multi-image same-in-all">
-        <form method="post" enctype="multipart/form-data">
+        <form onSubmit={handleSubmit}>
           <label for="imageData" style={{fontWeight: 'bold', fontSize: '1.2rem'}}>Multi Image upload</label>
-          <input type="file" name="imageData" multiple id='upload' className='input-image' />
+          <input type="file" name="image" multiple id='upload' className='input-image' onChange={handleChange} />
         </form>
       </div>
       <div className='btn-container'>

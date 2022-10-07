@@ -11,11 +11,11 @@ body{
 .container-app {
     display: flex;
     margin-top: 5rem;
-    margin-left: 10%;
+    margin: 10%;
     margin-top: 5%;
     border: 1px grey solid;
     border-radius: 5px;
-    max-width: 100rem;
+    max-width: 80vw;
     max-height: 50rem;
     background-color: whitesmoke;
 }
